@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Grid, ButtonGroup, Typography, Button, Card, CardContent, CardActions } from "@material-ui/core";
+import { Grid, Typography, Button, Card, CardContent, CardActions } from "@material-ui/core";
 import CheckBoxIcon from "@material-ui/icons/CheckBox";
 import { Link } from "react-router-dom";
-//import { Redirect } from "react-router"
 
 const useStyles = makeStyles((theme) => ({
   paymentContainer: {
@@ -178,22 +177,18 @@ export default function Payment(props) {
         <Grid item xs={6}>
           <Typography>No. of Guest</Typography>
         </Grid>
-        <Grid item xs={6}>
-          <ButtonGroup size="small" aria-label="small outlined button group">
+        <Grid item xs={6} style={{display: "flex"}}>
             <Button onClick={decrementGuest}>-</Button>
             <p>{guestCount}</p>
             <Button onClick={incrementGuest}>+</Button>
-          </ButtonGroup>
         </Grid>
         <Grid item xs={6}>
           <Typography>No. of Rooms</Typography>
         </Grid>
-        <Grid item xs={6}>
-          <ButtonGroup size="small" aria-label="small outlined button group">
+        <Grid item xs={6} style={{display: "flex"}}>
             <Button onClick={decrementRoom}>-</Button>
             <p>{roomCount}</p>
             <Button onClick={incrementRoom}>+</Button>
-          </ButtonGroup>
         </Grid>
         <Grid item xs={6}>
           <Typography>Total Price</Typography>

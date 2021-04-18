@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Typography }from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import { Link } from "react-router-dom"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-function HotelCard({ hotelDetails, handleBookNow }) {
+function HotelCard({ hotelDetails }) {
   const classes = useStyles();
   const {
     hotelId,
@@ -48,9 +49,18 @@ function HotelCard({ hotelDetails, handleBookNow }) {
       <div className="ratings">
         <Typography variant="h6">Total Ratings: {totalRatings}</Typography>
         <Typography variant="h6">Rating: {rating}</Typography>
-      <Button variant="contained" color="primary" className={classes.btnStyle} onClick={() => handleBookNow(hotelId, name, price, image)}>
+      <Link style={{textDecoration: "none"}} to={{
+        pathname:"/payment",
+        state:{
+          hotelId,
+          name,
+          price,
+          image
+        }
+      }}><Button variant="contained" color="primary" className={classes.btnStyle}>
         Request to Book
       </Button>
+      </Link>
       </div>
     </div>
   );

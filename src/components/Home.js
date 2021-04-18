@@ -1,16 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Redirect } from "react-router-dom";
 import HotelCard from "./HotelCard";
 
-function Home() {
+export default function Home() {
   const [state, setState] = useState({
     hotelsList: [],
-    hotelId: "",
-    name: "",
-    price: "",
-    bookNowStatus: false,
   });
   useEffect(() => {
+    console.log("cdm called of home")
     fetch("http://localhost:3000")
       .then((res) => res.json())
       .then((hotelsList) =>
@@ -21,40 +17,14 @@ function Home() {
       );
   }, []);
 
-  const handleBookNow = (hotelId, name, price, image) => {
-    setState((prevState) => ({
-      ...prevState,
-      hotelId,
-      name,
-      price,
-      image,
-      bookNowStatus: true,
-    }));
-  };
-  const { hotelsList, bookNowStatus, hotelId, name, price, image } = state;
-  return bookNowStatus ? (
-    <Redirect
-      to={{
-        pathname: "/payment",
-        state: {
-          hotelId,
-          name,
-          price,
-          image
-        },
-      }}
-    />
+  const { hotelsList } = state;
+  return hotelsList.length === 0 ? (
+    <div>Loading...</div>
   ) : (
     <div>
       {hotelsList.map((hotelDetails) => (
-        <HotelCard
-          key={hotelDetails.hotelId}
-          hotelDetails={hotelDetails}
-          handleBookNow={handleBookNow}
-        />
+        <HotelCard key={hotelDetails.hotelId} hotelDetails={hotelDetails} />
       ))}
     </div>
   );
 }
-
-export default Home;
