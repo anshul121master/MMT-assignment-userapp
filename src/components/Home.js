@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import HotelCard from "./HotelCard";
+import Loader from './Loader'
 
 export default function Home() {
   const [state, setState] = useState({
@@ -19,7 +20,7 @@ export default function Home() {
 
   const { hotelsList } = state;
   return hotelsList.length === 0 ? (
-    <div>Loading...</div>
+    <Loader />
   ) : (
     <div>
       {hotelsList.map((hotelDetails) => (
