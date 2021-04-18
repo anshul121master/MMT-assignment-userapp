@@ -44,16 +44,15 @@ const useStyles = makeStyles((theme) => ({
 export default function Payment(props) {
   const classes = useStyles();
   const [state, setState] = useState({
-    hotelId: props.location.state.hotelId,
-    name: props.location.state.name,
-    price: props.location.state.price,
-    image: props.location.state.image,
     totalPrice: props.location.state.price,
     guestCount: 1,
     roomCount: 1,
     requestSubmitted: false,
   });
-  const { hotelId, name, price, image, totalPrice, guestCount, roomCount, requestSubmitted } = state;
+
+  const { name, price, image } = props.location.state;
+  const { hotelId } = props.match.params
+  const { totalPrice, guestCount, roomCount, requestSubmitted } = state;
 
   const incrementGuest = () => {
     setState((prevState) => ({

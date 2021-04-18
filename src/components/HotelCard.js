@@ -50,9 +50,8 @@ function HotelCard({ hotelDetails }) {
         <Typography variant="h6">Total Ratings: {totalRatings}</Typography>
         <Typography variant="h6">Rating: {rating}</Typography>
       <Link style={{textDecoration: "none"}} to={{
-        pathname:"/payment",
+        pathname:`/payment/${hotelId}`,
         state:{
-          hotelId,
           name,
           price,
           image
